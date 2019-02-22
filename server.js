@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const config = require('./config/config')
 const authUser = require('./routes/authUser')
+const items = require('./routes/items')
 const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
@@ -21,6 +22,7 @@ app.use(cors())
 app.use(express.static('public'))
 
 app.use('/', authUser)
+app.use('/', items)
 
 app.listen(config.port, (err) => {
     if(err) {

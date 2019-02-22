@@ -3,6 +3,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 let User = new Schema({
+    contactName: {
+        type: String
+    },
+    phoneNumber: {
+        type: String
+    },
     email: {
         type: String,
         trim: true,
@@ -13,6 +19,24 @@ let User = new Schema({
     password: {
         type: String,
         required: "Password is required"
+    },
+    golfCourseName: {
+        type:String
+    },
+    address: {
+        type: String
+    },
+    cityAddr: {
+        type: String
+    },
+    stateAddr: {
+        type: String
+    },
+    zip: {
+        type: String
+    },
+    golfCourseUrl: {
+        type: String
     },
     created: {
         type: Date,
