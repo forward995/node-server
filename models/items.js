@@ -12,6 +12,10 @@ let Item = new Schema({
     itemAmount: {
         type: Number
     },
+    categoryId: {
+        type: Number
+    }
+    ,
     created: {
         type: Date,
         default: Date.now

@@ -5,9 +5,6 @@ const Schema = mongoose.Schema;
 let Menu = new Schema({
     menuName: {
         type: String
-    },
-    categoryId: {
-        type: String
     }
 })
 
