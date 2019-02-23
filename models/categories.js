@@ -9,7 +9,7 @@ let Category = new Schema({
     categoryIcon: {
         type: String
     },
-    itemsId: {
+    itemId: {
         type: String
     }
     
