@@ -1,8 +1,8 @@
-const Menu = require('../models/menus')
+const Course = require('../models/courses')
 
-const menusAdd = (req, res) => {
-    let menu = new Menu(req.body)
-    menu.save()
+const courseAdd = (req, res) => {
+    let course = new Course(req.body)
+    course.save()
         .then(() => {
             return res.status(200).json("Success")
         })
@@ -11,38 +11,38 @@ const menusAdd = (req, res) => {
         })
 }
 
-const getmenus = (req, res) => {
-    Menu.find(function(err, menus) {
+const getCourses = (req, res) => {
+    Course.find(function(err, courses) {
         if(err) {
             return res.json(err);
         }
         else {
-            return res.json(menus);
+            return res.json(courses);
         }
     })
 }
 
-const editmenu = (req, res) => {
+const editCourse = (req, res) => {
     let id = req.params.id
-    Menu.findById(id, function(err, menu){
+    Course.findById(id, function(err, course){
         if(err) {
             return res.json(err)
         }
         else {
-            return res.json(menu)
+            return res.json(course)
         }
     })
 }
 
-const update = (req, res) => {
-    Menu.findById(req.params.id, function(err, menu){
-        if(!menu) {
+const updateCourse = (req, res) => {
+    Course.findById(req.params.id, function(err, course){
+        if(!course) {
             return res.status(400).send('faild')
         }
         else {
-            menu.menuName = req.body.menuName
-            menu.categoryId = req.body.categoryId
-            menu.save().then(() => {
+            course.courseName = req.body.courseName
+            course.description = req.body.description
+            course.save().then(() => {
                 return res.json('Update complete')
             })
             .catch(() => {
@@ -52,8 +52,8 @@ const update = (req, res) => {
     })
 }
 
-const deletemenu = (req, res) => {
-    Item.findByIdAndRemove({_id: req.params.id}, function(err) {
+const deleteCourse = (req, res) => {
+    Course.findByIdAndRemove({_id: req.params.id}, function(err) {
         if(err)
             return res.json(err)
         else 
@@ -62,9 +62,9 @@ const deletemenu = (req, res) => {
 }
 
 module.exports = {
-    menusAdd,
-    getmenus,
-    editmenu,
-    update,
-    deletemenu
+    courseAdd,
+    getCourses,
+    editCourse,
+    updateCourse,
+    deleteCourse
 }

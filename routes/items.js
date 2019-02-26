@@ -12,8 +12,8 @@ router.route('/api/items')
 router.route('/api/editItem/:id')
     .get(itemsCtrl.editItem)
 
-router.route('/api/updateItems/:id')
-    .post(itemsCtrl.update)
+router.route('/api/updateItem/:id')
+    .post(itemsCtrl.updateItem)
 
 router.route('/api/deleteItem/:id')
     .delete(itemsCtrl.deleteItem)

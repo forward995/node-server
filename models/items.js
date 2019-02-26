@@ -4,21 +4,20 @@ const Schema = mongoose.Schema;
 
 let Item = new Schema({
     itemName: {
-        type: String
+        type: String,
+        required: true
     },
     itemPrice: {
-        type: Number
+        type: Number,
+        required: true
     },
     itemAmount: {
-        type: Number
+        type: Number,
+        required: true
     },
-    categoryId: {
-        type: Number
-    }
-    ,
-    created: {
-        type: Date,
-        default: Date.now
+    subCategoryId: {
+        type: String,
+        required: true
     }
 })
 

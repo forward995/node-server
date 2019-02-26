@@ -2,8 +2,13 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const config = require('./config/config')
+
 const authUser = require('./routes/authUser')
+const courses = require('./routes/courses')
+const categories = require('./routes/categories')
+const subCategories = require('./routes/subCategories')
 const items = require('./routes/items')
+
 const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
@@ -21,7 +26,11 @@ app.use(cors())
 
 app.use(express.static('public'))
 
+// Use Routes
 app.use('/', authUser)
+app.use('/', courses)
+app.use('/', categories)
+app.use('/', subCategories)
 app.use('/', items)
 
 app.listen(config.port, (err) => {

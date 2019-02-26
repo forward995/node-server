@@ -34,7 +34,7 @@ const editItem = (req, res) => {
     })
 }
 
-const update = (req, res) => {
+const updateItem = (req, res) => {
     Item.findById(req.params.id, function(err, item){
         if(!item) {
             return res.status(400).send('faild')
@@ -66,6 +66,6 @@ module.exports = {
     itemsAdd,
     getItems,
     editItem,
-    update,
+    updateItem,
     deleteItem
 }

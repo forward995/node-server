@@ -9,8 +9,8 @@ let Category = new Schema({
     categoryIcon: {
         type: String
     },
-    menuId: {
-        type: Number
+    courseId: {
+        type: String
     }
     
 })

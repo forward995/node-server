@@ -1,4 +1,6 @@
 let Category = require('../models/categories')
+// let SubCategory = require('../models/subCategories')
+// const Item = require('../models/items')
 
 const categoryAdd = (req, res) => {
     let category = new Category(req.body)
@@ -22,23 +24,23 @@ const getCategories = (req, res) => {
     })
 }
 
-const editCategories = (req, res) => {
+const editCategory = (req, res) => {
     let id = req.params.id
     Category.findById(id, function(err, category){
         if(err) {
             return res.json(err)
         }
-        res.json(post)
+        return res.json(category)
     })
 }
 
-const update = (req, res) => {
+const updateCategory = (req, res) => {
     Category.findById(req.params.id, function(err, category) {
         if(!category)
             return res.status(404).send('data is not found')
         else {
             category.categoryName = req.body.categoryName
-            category.itemId = req.body.itemId
+            category.categoryIcon = req.body.categoryIcon
             category.save().then(() => {
                 return res.json("Update complete")
             })
@@ -51,9 +53,12 @@ const update = (req, res) => {
 
 const deleteCategory = (req, res) => {
     Category.findByIdAndRemove({_id: req.params.id}, function(err) {
-        if(err) 
+        if(err)  {
             return res.json(err)
-        else return res.json('Successfully removed')
+        }
+        else {
+            return res.json('Successfully removed')
+        }
     })
 }
 
@@ -61,7 +66,7 @@ const deleteCategory = (req, res) => {
 module.exports = {
     categoryAdd,
     getCategories,
-    editCategories,
-    update,
+    editCategory,
+    updateCategory,
     deleteCategory
 }
