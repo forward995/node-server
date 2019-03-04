@@ -8,6 +8,7 @@ const courses = require('./routes/courses')
 const categories = require('./routes/categories')
 const subCategories = require('./routes/subCategories')
 const items = require('./routes/items')
+const plans = require('./routes/plans')
 
 const mongoose = require('mongoose')
 
@@ -32,6 +33,7 @@ app.use('/', courses)
 app.use('/', categories)
 app.use('/', subCategories)
 app.use('/', items)
+app.use('/', plans)
 
 app.listen(config.port, (err) => {
     if(err) {
