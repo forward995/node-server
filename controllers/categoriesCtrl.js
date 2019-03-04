@@ -5,8 +5,8 @@ let Category = require('../models/categories')
 const categoryAdd = (req, res) => {
     let category = new Category(req.body)
     category.save()
-        .then(() => {
-            return res.status(200).json({'category':'category in added successfully'})
+        .then((category) => {
+            return res.status(200).json(category)
         })
         .catch(() => {
             return res.status(400).send('unable to save to database');
@@ -14,13 +14,12 @@ const categoryAdd = (req, res) => {
 }
 
 const getCategories = (req, res) => {
-    Category.find(function(err, categories){
+    let id = req.params.id
+    Category.find({courseId: id}, function(err, categories){
         if(err) {
             return res.json(err)
         }
-        else {
-            res.json(categories)
-        }
+        return res.json(categories)
     })
 }
 

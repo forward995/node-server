@@ -16,6 +16,9 @@ let Item = new Schema({
         required: true
     },
     subCategoryId: {
+        type: String
+    },
+    categoryId: {
         type: String,
         required: true
     }

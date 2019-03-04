@@ -6,7 +6,7 @@ const router = express.Router()
 router.route('/api/itemsAdd')
     .post(itemsCtrl.itemsAdd)
 
-router.route('/api/items')
+router.route('/api/items/:id')
     .get(itemsCtrl.getItems)
 
 router.route('/api/editItem/:id')

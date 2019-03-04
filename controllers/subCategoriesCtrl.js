@@ -4,8 +4,8 @@ let SubCategory = require('../models/subCategories')
 const subCategoryAdd = (req, res) => {
     let subCategory = new SubCategory(req.body)
     subCategory.save()
-        .then(() => {
-            return res.status(200).json({'subCategory':'subCategory in added successfully'})
+        .then((subCategory) => {
+            return res.status(200).json(subCategory)
         })
         .catch(() => {
             return res.status(400).send('unable to save to database');
@@ -13,7 +13,8 @@ const subCategoryAdd = (req, res) => {
 }
 
 const getSubCategories = (req, res) => {
-    SubCategory.find(function(err, subCategories){
+    let id = req.params.id
+    SubCategory.find({categoryId: id},function(err, subCategories){
         if(err) {
             return res.json(err)
         }

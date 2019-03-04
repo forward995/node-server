@@ -3,8 +3,8 @@ const Item = require('../models/items')
 const itemsAdd = (req, res) => {
     let item = new Item(req.body)
     item.save()
-        .then(() => {
-            return res.status(200).json("Success")
+        .then((item) => {
+            return res.status(200).json(item)
         })
         .catch(() => {
             return res.status(400).json('Faild')
@@ -12,7 +12,8 @@ const itemsAdd = (req, res) => {
 }
 
 const getItems = (req, res) => {
-    Item.find(function(err, items) {
+    let id = req.params.id
+    Item.find({categoryId: id},function(err, items) {
         if(err) {
             return res.json(err);
         }

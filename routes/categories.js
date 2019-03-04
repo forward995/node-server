@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.route('/api/categoryAdd')
     .post(categoriesCtrl.categoryAdd)
-router.route('/api/categories')
+router.route('/api/categories/:id')
     .get(categoriesCtrl.getCategories)
 router.route('/api/editCategory/:id')
     .get(categoriesCtrl.editCategory)
