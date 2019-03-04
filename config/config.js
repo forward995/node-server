@@ -7,5 +7,7 @@ module.exports = {
     // 'mongodb://' + (process.env.IP || 'localhost') + ':' +
     // (process.env.MONGO_PORT || '27017') +
     // '/crud',
-    mongoUri: 'mongodb://admin:king123456@ds117535.mlab.com:17535/eighteen'
+    mongoUri: 'mongodb://admin:king123456@ds117535.mlab.com:17535/eighteen',
+    email: '',
+    password: ''
 }

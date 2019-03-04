@@ -9,6 +9,10 @@ router.route('/api/plansAdd')
 router.route('/api/plans/:date')
     .get(plansCtrl.getPlans)
 
+
+router.route('/api/plans')
+    .get(plansCtrl.getAllPlans)
+
 router.route('/api/editPlan/:id')
     .get(plansCtrl.editPlan)
 

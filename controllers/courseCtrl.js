@@ -3,8 +3,8 @@ const Course = require('../models/courses')
 const courseAdd = (req, res) => {
     let course = new Course(req.body)
     course.save()
-        .then(() => {
-            return res.status(200).json("Success")
+        .then((course) => {
+            return res.status(200).json(course)
         })
         .catch(() => {
             return res.status(400).json('Faild')
@@ -42,8 +42,8 @@ const updateCourse = (req, res) => {
         else {
             course.courseName = req.body.courseName
             course.description = req.body.description
-            course.save().then(() => {
-                return res.json('Update complete')
+            course.save().then((course) => {
+                return res.json(course)
             })
             .catch(() => {
                 return res.status(400).send("unable to update the database")

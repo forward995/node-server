@@ -24,6 +24,17 @@ const getPlans = (req, res) => {
     })
 }
 
+const getAllPlans = (req, res) => {
+    Plan.find(function(err, plans){
+        if(err) {
+            return res.json(err);
+        }
+        else {
+            return res.json(plans);
+        }
+    })
+}
+
 const editPlan = (req, res) => {
     let id = req.params.id
     Plan.findById(id, function(err, plan){
@@ -69,5 +80,6 @@ module.exports = {
     getPlans,
     editPlan,
     updatePlan,
-    deletePlan
+    deletePlan,
+    getAllPlans
 }
