@@ -1,13 +1,17 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 const Schema = mongoose.Schema;
 
 let User = new Schema({
     contactName: {
-        type: String
+        type: String,
+        required: true
     },
     phoneNumber: {
-        type: String
+        type: String,
+        required: true
     },
     email: {
         type: String,
@@ -21,27 +25,40 @@ let User = new Schema({
         required: "Password is required"
     },
     golfCourseName: {
-        type:String
+        type:String,
+        required: true
     },
     address: {
-        type: String
+        type: String,
+        required: true
     },
     cityAddr: {
-        type: String
+        type: String,
+        required: true
     },
     stateAddr: {
-        type: String
+        type: String,
+        required: true
     },
     zip: {
-        type: String
+        type: String,
+        required: true
     },
     golfCourseUrl: {
-        type: String
+        type: String,
+        required: true
     },
     created: {
         type: Date,
         default: Date.now
     }
+})
+
+// hash user password before saving into database
+
+User.pre('save', function (next) {
+    this.password = bcrypt.hashSync(this.password, saltRounds)
+    next()
 })
 
 module.exports = mongoose.model('User', User)

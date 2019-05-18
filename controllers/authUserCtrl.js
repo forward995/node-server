@@ -2,6 +2,7 @@ let User = require('../models/users')
 const jwt = require('jsonwebtoken')
 const expressJWT = require('express-jwt')
 const config = require('../config/config')
+const bcrypt = require('bcrypt')
 
 const signin = (req, res) => {
     User.findOne({
@@ -11,27 +12,38 @@ const signin = (req, res) => {
             return res.status('401').json({
                 error: "User not found"
             })
-        const token = jwt.sign({
-            _id: user._id
-        }, config.jwtSecret)
-        return res.json({
-            token,
-            user
-        })
+        else {
+            if(bcrypt.compareSync(req.body.password, user.password)) {
+                const token = jwt.sign({
+                    _id: user._id
+                }, config.jwtSecret)
+                res.json({status: 'success', message: 'user found!!!',
+                        user: user, token: token
+                    })
+            } else {
+                res.json({
+                    status: "error",
+                    message: "Invalid email/password!!!",
+                    data: null
+                })
+            }
+        }
+
+        // return res.json({
+        //     token,
+        //     user
+        // })
     })
 }
 
-const signup = (req, res) => {
+const signup = (req, res, next) => {
     const user = new User(req.body)
     user.save((err, user) => {
         if(err) {
-            return res.status(400).json({
-                error: "error"
-            })
+            res.json({ error: err})
+        } else {
+            res.json({status: "success", message: "User added successfully!!!", data: null});
         }
-        res.status(200).json({
-           user
-        })
     })
 }
 

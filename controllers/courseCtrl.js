@@ -16,9 +16,7 @@ const getCourses = (req, res) => {
         if(err) {
             return res.json(err);
         }
-        else {
-            return res.json(courses);
-        }
+        return res.json(courses);
     })
 }
 
@@ -56,8 +54,15 @@ const deleteCourse = (req, res) => {
     Course.findByIdAndRemove({_id: req.params.id}, function(err) {
         if(err)
             return res.json(err)
-        else 
-            return res.json('Successfully removed')
+        else{
+            Course.find(function(err, courses) {
+                if(err) {
+                    return res.json(err);
+                }
+                return res.json(courses);
+            })
+        } 
+            
     })
 }
 

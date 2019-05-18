@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const config = require('./config/config')
+const logger = require('morgan')
+
 
 const authUser = require('./routes/authUser')
 const courses = require('./routes/courses')
@@ -21,6 +23,7 @@ mongoose.connection.on('error', () => {
 
 const app = express()
 
+app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors())
